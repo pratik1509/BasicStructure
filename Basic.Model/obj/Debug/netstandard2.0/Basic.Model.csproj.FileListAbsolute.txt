@@ -1,0 +1,12 @@
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.csprojAssemblyReference.cache
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.csproj.CoreCompileInputs.cache
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.AssemblyInfoInputs.cache
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.AssemblyInfo.cs
+D:\BasicStructure\BasicStructure\Basic.Model\bin\Debug\netstandard2.0\Basic.Model.deps.json
+D:\BasicStructure\BasicStructure\Basic.Model\bin\Debug\netstandard2.0\Basic.Model.dll
+D:\BasicStructure\BasicStructure\Basic.Model\bin\Debug\netstandard2.0\Basic.Model.pdb
+D:\BasicStructure\BasicStructure\Basic.Model\bin\Debug\netstandard2.0\Mongo.Repository.dll
+D:\BasicStructure\BasicStructure\Basic.Model\bin\Debug\netstandard2.0\Mongo.Repository.pdb
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.csproj.CopyComplete
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.dll
+D:\BasicStructure\BasicStructure\Basic.Model\obj\Debug\netstandard2.0\Basic.Model.pdb

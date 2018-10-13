@@ -1,0 +1,9 @@
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.csprojAssemblyReference.cache
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.csproj.CoreCompileInputs.cache
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.AssemblyInfoInputs.cache
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.AssemblyInfo.cs
+D:\BasicStructure\BasicStructure\Mongo.Repository\bin\Debug\netstandard2.0\Mongo.Repository.deps.json
+D:\BasicStructure\BasicStructure\Mongo.Repository\bin\Debug\netstandard2.0\Mongo.Repository.dll
+D:\BasicStructure\BasicStructure\Mongo.Repository\bin\Debug\netstandard2.0\Mongo.Repository.pdb
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.dll
+D:\BasicStructure\BasicStructure\Mongo.Repository\obj\Debug\netstandard2.0\Mongo.Repository.pdb

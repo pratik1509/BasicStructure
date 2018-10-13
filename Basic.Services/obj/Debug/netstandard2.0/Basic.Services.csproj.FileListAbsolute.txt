@@ -1,0 +1,14 @@
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Basic.Services.deps.json
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Basic.Services.dll
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Basic.Services.pdb
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Basic.Model.dll
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Mongo.Repository.dll
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Mongo.Repository.pdb
+D:\BasicStructure\BasicStructure\Basic.Services\bin\Debug\netstandard2.0\Basic.Model.pdb
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.csprojAssemblyReference.cache
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.csproj.CoreCompileInputs.cache
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.AssemblyInfoInputs.cache
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.AssemblyInfo.cs
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.csproj.CopyComplete
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.dll
+D:\BasicStructure\BasicStructure\Basic.Services\obj\Debug\netstandard2.0\Basic.Services.pdb
