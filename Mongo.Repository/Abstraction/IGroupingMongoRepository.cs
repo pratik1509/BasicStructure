@@ -1,10 +1,10 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     public interface IGroupingMongoRepository
     {

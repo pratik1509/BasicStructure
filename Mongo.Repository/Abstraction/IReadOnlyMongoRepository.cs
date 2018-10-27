@@ -1,11 +1,11 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     /// <summary>
     /// The IReadOnlyMongoRepository exposes the readonly functionality of the BaseMongoRepository.
@@ -105,6 +105,26 @@ namespace Mongo.Respository.Abstraction
         Task<List<TDocument>> GetAllAsync<TDocument>(Expression<Func<TDocument, bool>> filter, string partitionKey = null) where TDocument : IBaseModel;
 
         /// <summary>
+        /// Asynchronously returns a list of the documents matching the filter defination.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A filter defination.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        Task<List<TDocument>> FindAsync<TDocument>(FilterDefinition<TDocument> filter, string partitionKey = null) where TDocument : IBaseModel;
+
+        /// <summary>
+        /// find and project asynchronously list of documents
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TNewProjection"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="projection"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        Task<List<TNewProjection>> FindAndProjectAsync<TDocument, TNewProjection>
+            (FilterDefinition<TDocument> filter, Expression<Func<TDocument, TNewProjection>> projection, string partitionKey = null) where TDocument : IBaseModel;
+
+        /// <summary>
         /// Asynchronously returns a list of the documents matching the filter condition including IsDeleted records.
         /// </summary>
         /// <typeparam name="TDocument">The type representing a Document.</typeparam>
@@ -119,6 +139,26 @@ namespace Mongo.Respository.Abstraction
         /// <param name="filter">A LINQ expression filter.</param>
         /// <param name="partitionKey">An optional partition key.</param>
         List<TDocument> GetAll<TDocument>(Expression<Func<TDocument, bool>> filter, string partitionKey = null) where TDocument : IBaseModel;
+
+        /// <summary>
+        /// Returns a list of the documents matching the filter defination.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A filter defination.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        List<TDocument> Find<TDocument>(FilterDefinition<TDocument> filter, string partitionKey = null) where TDocument : IBaseModel;
+
+        /// <summary>
+        /// find and project output
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TNewProjection"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="projection"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        List<TNewProjection> FindAndProject<TDocument, TNewProjection>
+            (FilterDefinition<TDocument> filter, Expression<Func<TDocument, TNewProjection>> projection, string partitionKey = null) where TDocument : IBaseModel;
 
         /// <summary>
         /// Returns a list of the documents matching the filter condition including IsDeleted records.

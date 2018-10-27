@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
 using System;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
     /// <summary>
     /// This interface is being refrenced from Mongo.Repository. Do not delete it.

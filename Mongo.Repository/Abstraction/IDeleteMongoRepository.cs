@@ -1,9 +1,10 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
+using MongoDB.Driver;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     public interface IDeleteMongoRepository
     {
@@ -34,7 +35,16 @@ namespace Mongo.Respository.Abstraction
         /// <param name="filter">A LINQ expression filter.</param>
         /// <param name="partitionKey">An optional partition key.</param>
         /// <returns>The number of documents deleted.</returns>
-        Task<long> DeleteManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel;
+        Task<bool> DeleteManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel;
+
+        /// <summary>
+        /// Asynchronously deletes the documents matching the condition of the LINQ expression filter.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A LINQ expression filter.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        /// <returns>The number of documents deleted.</returns>
+        Task<bool> DeleteManyAsync<TDocument>(FilterDefinition<TDocument> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel;
 
         /// <summary>
         /// Deletes the documents matching the condition of the LINQ expression filter.

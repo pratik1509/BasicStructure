@@ -1,9 +1,9 @@
 ﻿using MongoDB.Driver;
-using Mongo.Repository;
+using Common.Mongo.Repository;
 using System.Linq;
 using System.Reflection;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
     /// <summary>
     /// The MongoDb context

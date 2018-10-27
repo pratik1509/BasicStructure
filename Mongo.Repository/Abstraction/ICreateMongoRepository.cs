@@ -1,8 +1,8 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     public interface ICreateMongoRepository
     {

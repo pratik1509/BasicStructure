@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
     /// <summary>
     /// The base Repository, it is meant to be inherited from by your custom custom MongoRepository implementation.
@@ -107,7 +107,7 @@ namespace Mongo.Repository
                 AddInsertProperties(document, createdBy);
             }
            
-                GetCollection<TDocument>().InsertMany(documents.ToList());
+            GetCollection<TDocument>().InsertMany(documents.ToList());
         }
 
         #endregion Create
@@ -276,6 +276,62 @@ namespace Mongo.Repository
             var filter = Builders<TDocument>.Filter.Eq("Id", documentToModify.Id);
             var updateRes = GetCollection<TDocument>().UpdateOne(filter, update, new UpdateOptions { IsUpsert = true });
             return updateRes.ModifiedCount == 1;
+        }
+
+        /// <summary>
+        /// Asynchronosly update multiple docs
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>     
+        /// <param name="updatedBy"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter,
+            UpdateDefinition<TDocument> update, string updatedBy, string partitionKey = null)        
+            where TDocument : IBaseModel
+        {
+            update = AddUpdateProperties(update, updatedBy);
+            var collection = string.IsNullOrEmpty(partitionKey) ? GetCollection<TDocument>() : GetCollection<TDocument>(partitionKey);
+            var updateRes = await collection.UpdateManyAsync(Builders<TDocument>.Filter.Where(filter), update);
+            return updateRes.ModifiedCount >= 1;
+        }
+
+        /// <summary>
+        /// Asynchronosly update multiple docs using filter defination
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>     
+        /// <param name="updatedBy"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateManyAsync<TDocument>(FilterDefinition<TDocument> filter,
+            UpdateDefinition<TDocument> update, string updatedBy, string partitionKey = null)
+            where TDocument : IBaseModel
+        {
+            update = AddUpdateProperties(update, updatedBy);
+            var collection = string.IsNullOrEmpty(partitionKey) ? GetCollection<TDocument>() : 
+                GetCollection<TDocument>(partitionKey);
+
+            var updateRes = await collection.UpdateManyAsync(filter, update);
+            return updateRes.ModifiedCount >= 1;
+        }
+
+        /// <summary>
+        /// Update list of documents
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="update"></param>
+        /// <param name="updatedBy"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateManyAsyc<TDocument>(Expression<Func<TDocument, bool>> filter, UpdateDefinition<TDocument> update, string updatedBy)
+           where TDocument : IBaseModel
+        {           
+            update = AddUpdateProperties(update, updatedBy);          
+            var updateRes = await GetCollection<TDocument>().UpdateManyAsync(filter, update, new UpdateOptions { IsUpsert = false });
+            return updateRes.ModifiedCount >= 1;
         }
 
         #endregion Update
@@ -458,11 +514,24 @@ namespace Mongo.Repository
             return updateRes.ModifiedCount == 1;
         }
 
-        public Task<long> DeleteManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel
+        public async Task<bool> DeleteManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel
         {
-            throw new NotImplementedException();
+            UpdateDefinition<TDocument> update = AddDeleteProperties<TDocument>(deletedBy);
+
+            var collection = string.IsNullOrEmpty(partitionKey) ? GetCollection<TDocument>() : GetCollection<TDocument>(partitionKey);
+            var updateRes = await collection.UpdateManyAsync(filter, update);
+            return updateRes.ModifiedCount >= 1;
         }
-               
+
+        public async Task<bool> DeleteManyAsync<TDocument>(FilterDefinition<TDocument> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel
+        {
+            UpdateDefinition<TDocument> update = AddDeleteProperties<TDocument>(deletedBy);
+
+            var collection = string.IsNullOrEmpty(partitionKey) ? GetCollection<TDocument>() : GetCollection<TDocument>(partitionKey);
+            var updateRes = await collection.UpdateManyAsync(filter, update);
+            return updateRes.ModifiedCount >= 1;
+        }
+
         public long DeleteMany<TDocument>(Expression<Func<TDocument, bool>> filter, string deletedBy, string partitionKey = null) where TDocument : IBaseModel
         {
             throw new NotImplementedException();
@@ -560,6 +629,6 @@ namespace Mongo.Repository
             return update;
         }
 
-        #endregion  
+        #endregion
     }
 }

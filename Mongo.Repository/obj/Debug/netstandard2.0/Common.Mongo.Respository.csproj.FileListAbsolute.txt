@@ -1,0 +1,9 @@
+D:\OfficeWork\Common.Mongo.Respository\bin\Debug\netstandard2.0\Common.Mongo.Respository.deps.json
+D:\OfficeWork\Common.Mongo.Respository\bin\Debug\netstandard2.0\Common.Mongo.Respository.dll
+D:\OfficeWork\Common.Mongo.Respository\bin\Debug\netstandard2.0\Common.Mongo.Respository.pdb
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.csprojAssemblyReference.cache
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.csproj.CoreCompileInputs.cache
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.AssemblyInfoInputs.cache
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.AssemblyInfo.cs
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.dll
+D:\OfficeWork\Common.Mongo.Respository\obj\Debug\netstandard2.0\Common.Mongo.Respository.pdb

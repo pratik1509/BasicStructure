@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
     /// <summary>
     /// This attribute allows you to specify of the name of the collection.

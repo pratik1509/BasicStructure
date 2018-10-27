@@ -1,10 +1,10 @@
-﻿using Mongo.Respository.Abstraction;
+﻿using Common.Mongo.Respository.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
 
     /// <summary>

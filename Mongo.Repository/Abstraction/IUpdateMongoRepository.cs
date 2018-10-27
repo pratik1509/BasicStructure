@@ -1,10 +1,10 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
 using MongoDB.Driver;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     public interface IUpdateMongoRepository
     {
@@ -110,6 +110,36 @@ namespace Mongo.Respository.Abstraction
         /// <param name="documentToModify">The document you want to modify.</param>
         /// <param name="update">The update definition for the document.</param>
         bool UpdateOne<TDocument>(TDocument documentToModify, UpdateDefinition<TDocument> update, string updatedBy)
+            where TDocument : IBaseModel;
+
+        /// <summary>
+        /// Asynchronously Updates list of documents.
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        Task<bool> UpdateManyAsync<TDocument>(Expression<Func<TDocument, bool>> filter,
+            UpdateDefinition<TDocument> update, string updatedBy, string partitionKey = null)
+            where TDocument : IBaseModel;
+
+        /// <summary>
+        /// Asynchronously Updates list of documents using flter.
+        /// </summary>
+        /// <typeparam name="TDocument"></typeparam>
+        /// <typeparam name="TField"></typeparam>
+        /// <param name="filter"></param>
+        /// <param name="field"></param>
+        /// <param name="value"></param>
+        /// <param name="updatedBy"></param>
+        /// <param name="partitionKey"></param>
+        /// <returns></returns>
+        Task<bool> UpdateManyAsync<TDocument>(FilterDefinition<TDocument> filter,
+            UpdateDefinition<TDocument> update, string updatedBy, string partitionKey = null)
             where TDocument : IBaseModel;
 
         #endregion

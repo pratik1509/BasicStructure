@@ -7,13 +7,13 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "Mongo.Repository/1.0.0": {
+      "Common.Mongo.Respository/1.0.0": {
         "dependencies": {
           "MongoDB.Driver": "2.7.0",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
-          "Mongo.Repository.dll": {}
+          "Common.Mongo.Respository.dll": {}
         }
       },
       "DnsClient/1.0.7": {
@@ -976,7 +976,7 @@
     }
   },
   "libraries": {
-    "Mongo.Repository/1.0.0": {
+    "Common.Mongo.Respository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

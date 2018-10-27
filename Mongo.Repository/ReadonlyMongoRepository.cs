@@ -1,4 +1,4 @@
-﻿using Mongo.Respository.Abstraction;
+﻿using Common.Mongo.Respository.Abstraction;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Repository
+namespace Common.Mongo.Repository
 {
     /// <summary>
     /// The ReadOnlyMongoRepository implements the readonly functionality of the IReadOnlyMongoRepository.
@@ -185,6 +185,40 @@ namespace Mongo.Repository
         }
 
         /// <summary>
+        /// Asynchronously returns a list of the documents matching the filter condition if its not IsDeleted.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A LINQ expression filter.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        public async Task<List<TDocument>> FindAsync<TDocument>(FilterDefinition<TDocument> filter, string partitionKey = null) where TDocument : IBaseModel
+        {
+            var compositeFilter = new FilterDefinitionBuilder<TDocument>();
+            var videoFilterDef = compositeFilter.Empty;
+            videoFilterDef = filter & compositeFilter.Eq(x => x.IsDeleted, false);
+
+            return await GetCollection<TDocument>().Find(videoFilterDef).ToListAsync();
+        }
+
+        /// <summary>
+        /// Asynchronously returns a list of the documents matching the filter condition if its not IsDeleted.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A LINQ expression filter.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        public async Task<List<TNewProjection>> FindAndProjectAsync<TDocument, TNewProjection>
+            (FilterDefinition<TDocument> filter, Expression<Func<TDocument, TNewProjection>> projection, string partitionKey = null) where TDocument : IBaseModel
+        {
+            var compositeFilter = new FilterDefinitionBuilder<TDocument>();
+            var videoFilterDef = compositeFilter.Empty;
+            videoFilterDef = filter & compositeFilter.Eq(x => x.IsDeleted, false);
+
+            return await GetCollection<TDocument>()
+                .Find(videoFilterDef)
+                .Project(projection)
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Asynchronously returns a list of the documents matching the filter condition eventhough its deleted
         /// </summary>
         /// <typeparam name="TDocument">The type representing a Document.</typeparam>
@@ -208,6 +242,40 @@ namespace Mongo.Repository
             videoFilterDef = filter & compositeFilter.Eq(x => x.IsDeleted, false);
 
             return GetCollection<TDocument>().Find(videoFilterDef).ToList();
+        }
+
+        /// <summary>
+        /// Returns a list of the documents matching the filter condition excluding IsDeleted records.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A filter defination.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        public List<TDocument> Find<TDocument>(FilterDefinition<TDocument> filter, string partitionKey = null) where TDocument : IBaseModel
+        {
+            var compositeFilter = new FilterDefinitionBuilder<TDocument>();
+            var videoFilterDef = compositeFilter.Empty;
+            videoFilterDef = filter & compositeFilter.Eq(x => x.IsDeleted, false);
+
+            return GetCollection<TDocument>().Find(videoFilterDef).ToList();
+        }
+
+        /// <summary>
+        /// returns a list of the documents matching the filter condition if its not IsDeleted.
+        /// </summary>
+        /// <typeparam name="TDocument">The type representing a Document.</typeparam>
+        /// <param name="filter">A LINQ expression filter.</param>
+        /// <param name="partitionKey">An optional partition key.</param>
+        public List<TNewProjection> FindAndProject<TDocument, TNewProjection>
+            (FilterDefinition<TDocument> filter, Expression<Func<TDocument, TNewProjection>> projection, string partitionKey = null) where TDocument : IBaseModel
+        {
+            var compositeFilter = new FilterDefinitionBuilder<TDocument>();
+            var videoFilterDef = compositeFilter.Empty;
+            videoFilterDef = filter & compositeFilter.Eq(x => x.IsDeleted, false);
+
+            return GetCollection<TDocument>()
+                .Find(videoFilterDef)
+                .Project(projection)
+                .ToList();
         }
 
         /// <summary>

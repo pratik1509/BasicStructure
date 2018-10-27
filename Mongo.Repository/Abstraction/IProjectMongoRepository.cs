@@ -1,10 +1,10 @@
-﻿using Mongo.Repository;
+﻿using Common.Mongo.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Mongo.Respository.Abstraction
+namespace Common.Mongo.Respository.Abstraction
 {
     public interface IProjectMongoRepository
     {
